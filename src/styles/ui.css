@@ -1,0 +1,8 @@
+/* Shared UI pieces */
+.btn { display: inline-block; padding: 12px 22px; border-radius: var(--radius-sm); font-weight: 600; font-size: 0.95rem; border: 1px solid transparent; transition: background 0.2s, border-color 0.2s; }
+.btn--primary { background: var(--cyan); color: var(--bg-deep); }
+.btn--primary:hover { background: #4dd6ff; }
+.btn--ghost { border-color: var(--glass-border); color: var(--text); }
+.btn--ghost:hover { border-color: var(--cyan); }
+.block { padding-bottom: 56px; }
+.block__title { font-size: 1.3rem; margin: 0 0 20px; }
