@@ -1,3 +1,4 @@
+import { seoResponse } from "./seo.js"
 // Cloudflare Worker entry for Novaforge Labs.
 // Static files and the SPA fallback are served by the assets binding.
 // Only /api/* reaches this Worker (see run_worker_first in wrangler.jsonc).
@@ -52,6 +53,8 @@ export default {
     for (const [k, v] of Object.entries(env || {})) if (typeof v === "string" && !process.env[k]) process.env[k] = v
 
     const url = new URL(request.url)
+    const seo = await seoResponse(url, env)
+    if (seo) return seo
     const handler = ROUTES[url.pathname.replace(/^\/api\//, "").replace(/\/$/, "")]
     if (url.pathname.startsWith("/api/") && handler) return run(handler, request, Object.fromEntries(url.searchParams))
     return new Response(JSON.stringify({ error: "Not found" }), { status: 404, headers: { "Content-Type": "application/json" } })
